@@ -24,3 +24,11 @@ func TestEqual(t *testing.T) {
 func TestNotEqual(t *testing.T) {
 	NotEqual(t, paul, peter, "Paul does not equal peter")
 }
+
+func TestNotEqualNil(t *testing.T) {
+	NotEqual(t, paul, nil, "Paul is not nil")
+}
+
+func TestNilEqualNil(t *testing.T) {
+	Equal(t, nil, nil, "Nil is nil")
+}
