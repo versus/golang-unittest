@@ -4,7 +4,7 @@
 
 Two set of assert and check functions for hard and soft unit test assertions in Go. The golang creators reject to create own testing framework, see [Go FAQ about testing framework](https://golang.org/doc/faq#testing_framework).
 
-Insipered by:
+Inspired by:
 * [golang-assert](https://github.com/stfsy/golang-assert)
 * [python unittest library](https://docs.python.org/3.6/library/unittest.html)
 
