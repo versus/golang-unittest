@@ -16,7 +16,11 @@ func check(t *testing.T, actual interface{}, expected interface{}, message strin
 		tracepieces := strings.Split(string(buf), "\n")
 
 		// 6-th points to check-line in test class
-		t.Errorf("from %s: %s failed: Expected |%v|, but got |%v|", tracepieces[6], message, expected, actual)
+		if expectation {
+			t.Fatalf("from %s: %s failed: Expected |%v|, but got |%v|", tracepieces[6], message, expected, actual)
+		} else {
+			t.Fatalf("from %s: %s failed: Expected not |%v|, but got |%v|", tracepieces[6], message, expected, actual)
+		}
 	}
 }
 
