@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"./assert"
-	"./check"
+	"github.com/vizor-games/golang-unittest/assert"
+	"github.com/vizor-games/golang-unittest/check"
 )
 
 type Person struct {
