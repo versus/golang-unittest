@@ -8,6 +8,13 @@ Insipered by:
 * [golang-assert](https://github.com/stfsy/golang-assert)
 * [python unittest library](https://docs.python.org/3.6/library/unittest.html)
 
+Improvements:
+* check functions
+* frendlier error messages, including correct code line from tests
+* In function for strings
+* Error, NilError functions for functions that returns more than one parameter
+* NilErr - short way to check no errors
+
 The check functions are soft assertions. Failing tests will only be reported to the console via *t.Errorf()*.
 The assert functions are hard assertions. Failing tests will be reported to the console via *t.Failf()* and skip the current test execution.
 
@@ -43,7 +50,18 @@ var peter = Person{
 }
 
 func TestNotEqual(t *testing.T) {
-	check.NotEqual(t, paul, peter, "Paul does not equal Peter")
+	assert.NotEqual(t, paul, peter, "Paul does not equal Peter")
+```
+
+## Functions that returns additional error value
+
+Use assert.J or check.J to convert args... to []interface{}:
+
+```go
+func TestError(t *testing.T) {
+	// "err is not nil for unexist file"
+	assert.Error(t, assert.J(os.Open("unexist.file")))
+}
 ```
 
 ## Installation
