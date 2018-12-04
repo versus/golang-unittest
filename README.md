@@ -1,46 +1,69 @@
-# Assert
+# golang asserts and checks
 
-[![Build Status](https://travis-ci.org/stfsy/golang-assert.svg)](https://travis-ci.org/stfsy/golang-assert)
+[![Build Status](https://travis-ci.org/vizor-games/golang-unittest.svg)](https://travis-ci.org/vizor-games/golang-unittest)
 
-Two simple functions for soft unit test assertions in Go.
+Two set of assert and check functions for hard and soft unit test assertions in Go. The golang creators reject to create own testing framework, see [Go FAQ about testing framework](https://golang.org/doc/faq#testing_framework).
 
-Yes, the [Go FAQ](https://golang.org/doc/faq#testing_framework) states the following:
-> [..] testing frameworks tend to develop into mini-languages of their own, with conditionals and controls and printing mechanisms, but Go already has all those capabilities; why recreate them? We'd rather write tests in Go; it's one fewer language to learn and the approach keeps the tests straightforward and easy to understand.
+Insipered by:
+* [golang-assert](https://github.com/stfsy/golang-assert)
+* [python unittest library](https://docs.python.org/3.6/library/unittest.html)
 
-But unit tests should be clean too, right? :)
+The check functions are soft assertions. Failing tests will only be reported to the console via *t.Errorf()*.
+The assert functions are hard assertions. Failing tests will be reported to the console via *t.Failf()* and skip the current test execution.
 
-Both Assertions are soft assertions. Failing tests will only be reported to the console via *t.Errorf()*.
 
+## Check equal
 
-## Assert equal
 ```go
+import "https://github.com/vizor-games/golang-unittest/check"
+
+type Person struct {
+	name string
+	age  int
+}
+
 var paul = Person{
 	name: "Paul",
-	age:  32}
+	age:  32,
+}
+
+paul2 := paul
 
 func TestEqual(t *testing.T) {
-	assert.Equal(t, paul, paul, "Paul equals paul")
+	check.Equal(t, paul, paul2, "Paul equals Paul")
 }
 ```
 
 ## Assert not equal
-```go
-var paul = Person{
-	name: "Paul",
-	age:  32}
 
+```go
 var peter = Person{
 	name: "Peter",
-	age:  21}
+	age:  21,
+}
 
 func TestNotEqual(t *testing.T) {
-	assert.NotEqual(t, paul, peter, "Paul does not equal peter")
+	check.NotEqual(t, paul, peter, "Paul does not equal Peter")
 ```
 
 ## Installation
 
+New way:
 ```bash
-go get github.com/stfsy/golang-assert
+vgo get github.com/vizor-games/golang-unittest
+```
+
+Old way:
+```bash
+go get github.com/vizor-games/golang-unittest
+```
+
+## Run tests
+
+```bash
+go test -v  # -v - verbose
+go test ./assert
+go test ./check
 ```
 
 ## License
